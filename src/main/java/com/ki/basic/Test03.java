@@ -4,6 +4,10 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.IntBinaryOperator;
+import java.util.function.IntPredicate;
+import java.util.function.Supplier;
 
 public class Test03 {
     public static void main(String[] args) {
@@ -20,7 +24,9 @@ public class Test03 {
         // (Student s, Teacher t) -> s.getName() + "は、" + t.getName() + "の生徒です。";
 
         Face01 test01 = (a) -> (a & 1) == 0;
+        IntPredicate jdk01 = (a) -> (a & 1) == 0;
         System.out.println(test01.check(10));
+        System.out.println(jdk01.test(10));
 
         Face01 test02 = (a) -> BigInteger.valueOf(a).isProbablePrime(100);
         System.out.println(test02.check(10));
@@ -30,6 +36,8 @@ public class Test03 {
 
         Face03 test04 = (a, b) -> a - b;
         System.out.println(test04.check(3, 1));
+        IntBinaryOperator jdk02 = (a, b) -> a - b;
+        System.out.println(jdk02.applyAsInt(1,2));
 
         Face03 test05 = (a, b) -> a * b;
         System.out.println(test05.check(3, 1));
@@ -38,6 +46,8 @@ public class Test03 {
         Face07<Student> test10 = () -> new Student("test10", 20, "female");
         System.out.println(test06.check());
         System.out.println(test10.check());
+        Supplier<Student> jdk03 = () -> new Student("test10", 20, "female");
+        System.out.println(jdk03.get());
 
         Face05 test07 = () -> new ArrayList<Student>(Arrays.asList(
                 new Student("test07", 10, "female"),
@@ -68,6 +78,8 @@ public class Test03 {
         Face09<String, Student> test16 = (x) -> x.getGender();
         System.out.println(test16.check(new Student("佐々木", 15, "male")));
 
+        Function<Teacher, String> jdk04 = (t) -> t.getName();
+        System.out.println(jdk04.apply(new Teacher("山田", 19)));
 
 
     }

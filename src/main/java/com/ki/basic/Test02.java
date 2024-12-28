@@ -115,6 +115,21 @@ class Student {
         this.gender = gender;
     }
 
+    // 静的メソッド
+    public static boolean isMaleStatic(Student student) {
+        return "male".equals(student.getGender());
+    }
+
+    // インスタンスメソッド
+    public boolean isMale(Student student) {
+        return "male".equals(student.getGender());
+    }
+
+    // インスタンスメソッド (特定オブジェクトで使用)
+    public boolean isFemale(Student student) {
+        return "female".equals(student.getGender());
+    }
+
     @Override
     public String toString() {
         return "Student{" +
